@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Notícias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 1000px;
+        }
+        .imagem {
+            flex: 1;
+            padding: 10px;
+        }
+        .conteudo {
+            flex: 2;
+            margin-left: 20px;
+            max-width: 60%;
+        }
+        .botao-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 5px;
+            margin-right: 10px;
+            width: 100%;
+        }
+        #noticias-lista {
+            margin-top: 20px;
+        }
+        .informacoes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="imagem">
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/6584760-ilustracao-grafico-desenho-personagem-de-noticias-online-vetor.jpg" alt="Imagem Representativa">
+        </div>
+        <div class="conteudo">
+            <h2>Cadastro de Notícias</h2>
+        
+            <div class="botao-container">
+                <input type="text" id="noticia" placeholder="Digite uma notícia ou o número de notícias" oninput="alterarPlaceholder()">
+                <button onclick="adicionarNoticia()">Adicionar Notícia</button>
+                <button onclick="exibirNoticias()">Exibir Últimas Notícias</button>
+            </div>
+
+            <p>Quantidade de notícias cadastradas: <span id="quantidade">0</span></p>
+
+            <div class="informacoes">
+                <p>Últimas notícias a exibir: <span id="numero-exibicao">0</span></p>
+            </div>
+
+            <hr>
+
+            <div id="noticias-lista"></div>
+        </div>
+    </div>
+
+    <script>
+        let noticias = [];
+        let modoExibicao = false;  // Define se o usuário está pedindo para exibir ou adicionar notícias
+
+        function adicionarNoticia() {
+            let noticiaInput = document.getElementById('noticia');
+            let noticia = noticiaInput.value;
+
+            if (!modoExibicao && noticia) {
+                noticias.push(noticia);
+                document.getElementById('quantidade').textContent = noticias.length;
+                noticiaInput.value = '';
+            } else if (!modoExibicao) {
+                alert('Por favor, insira uma notícia!');
+            } else {
+                modoExibicao = false;  // Voltar para o modo de adicionar
+                document.getElementById('noticia').placeholder = 'Digite uma notícia';
+            }
+        }
+
+        function exibirNoticias() {
+            let numNoticias = parseInt(document.getElementById('noticia').value);
+            let listaNoticias = document.getElementById('noticias-lista');
+
+            if (isNaN(numNoticias) || numNoticias < 1 || numNoticias > noticias.length) {
+                alert('Por favor, insira um número válido de notícias a exibir!');
+                return;
+            }
+
+            document.getElementById('numero-exibicao').textContent = numNoticias;
+
+            listaNoticias.innerHTML = '';
+
+            for (let i = 1; i <= numNoticias; i++) {
+                let noticia = noticias[noticias.length - i];
+                let p = document.createElement('p');
+                p.textContent = noticia;
+                listaNoticias.appendChild(p);
+            }
+
+            modoExibicao = true;
+            document.getElementById('noticia').placeholder = 'Digite o número de notícias a exibir';
+        }
+
+        // Função para alterar o placeholder dependendo do modo
+        function alterarPlaceholder() {
+            let noticiaInput = document.getElementById('noticia');
+            if (modoExibicao) {
+                // Se estiver no modo de exibição, o placeholder já foi alterado
+                return;
+            }
+            noticiaInput.placeholder = 'Digite uma notícia';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Criptografia de Mensagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 50px;
+      gap: 50px;
+    }
+
+    .imagem img {
+        width: 500px;
+        height: auto;
+        align-items: center;
+        border-radius: 6px;
+    }
+
+    .conteudo {
+      max-width: 400px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .conteudo h2 {
+      margin-top: 0;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="imagem">
+        <img src="https://img.freepik.com/vetores-premium/ilustracoes-vetoriais-de-desenhos-animados-isolados-de-criptografia_107173-21555.jpg" alt="Imagem do Veículo" width="150">
+    </div>
+    <div class="conteudo">
+      <h2>Criptografia de Mensagem</h2>
+
+      <label for="mensagem">Mensagem:</label>
+      <input type="text" id="mensagem" placeholder="Digite sua mensagem aqui">
+
+      <button onclick="criptografar()">Criptografar</button>
+      <button onclick="descriptografar()">Descriptografar</button>
+
+      <div id="output"></div>
+    </div>
+  </div>
+
+  <script>
+    let mensagemCriptografada = "";
+
+    function criptografar() {
+      const mensagem = document.getElementById("mensagem").value;
+      let pares = "", impares = "";
+
+      for (let i = 0; i < mensagem.length; i++) {
+        if (i % 2 === 0) {
+          pares += mensagem[i];
+        } else {
+          impares += mensagem[i];
+        }
+      }
+
+      mensagemCriptografada = pares + impares;
+
+      document.getElementById("output").innerHTML =
+        "<strong>Mensagem criptografada:</strong> " + mensagemCriptografada;
+    }
+
+    function descriptografar() {
+      if (!mensagemCriptografada) {
+        document.getElementById("output").innerHTML =
+          "<strong>Erro:</strong> Nenhuma mensagem foi criptografada ainda.";
+        return;
+      }
+
+      const meio = Math.ceil(mensagemCriptografada.length / 2);
+      const parte1 = mensagemCriptografada.slice(0, meio);
+      const parte2 = mensagemCriptografada.slice(meio);
+
+      let original = "";
+
+      for (let i = 0; i < mensagemCriptografada.length; i++) {
+        if (i % 2 === 0) {
+          original += parte1.charAt(Math.floor(i / 2));
+        } else {
+          original += parte2.charAt(Math.floor(i / 2));
+        }
+      }
+
+      document.getElementById("output").innerHTML =
+        "<strong>Mensagem original:</strong> " + original;
+    }
+  </script>
+
+</body>
+</html>

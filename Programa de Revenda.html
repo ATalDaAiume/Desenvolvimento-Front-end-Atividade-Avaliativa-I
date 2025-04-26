@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação e Preço do Veículo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            align-items: flex-start;
+            background-color: #54a2b6;;
+        }
+        form {
+            color: white;
+        }
+        h1 {
+            font-size: 50px;
+            color: white;
+        }
+        .container {
+            max-width: 1350px; /* Limita a largura máxima do container a 1200px */
+            width: 100%; /* O container ocupará até 100% da largura disponível, mas não excederá 1200px */
+            display: flex;
+            flex-direction: row;
+            margin-left: -50px;
+        }
+        .imagem img {
+            width: 650px;
+            height: auto;
+            align-items: center;
+        }
+        label {
+            margin-top: 10px;
+            display: flex;
+        }
+        input {
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 6px;
+        }
+        button {
+            color:#1171b0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .resultado {
+            margin-top: 20px;
+        }
+        .resultado p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="imagem">
+            <img src="https://media.istockphoto.com/id/924660940/pt/vetorial/hand-holding-car-in-palm-and-key-on-finger.jpg?s=612x612&w=0&k=20&c=0-6HtBfO1yDuiNmailVmcIL1_Wu6hsAcamnciyjQ8TE=" alt="Imagem do Veículo" width="150">
+        </div>
+
+        <div class="formulario">
+            <h1><u>Ayrton Se Arrasta Multimarcas</u></h1>
+            <form id="formVeiculo">
+                <label for="modelo"><b>Modelo do Veículo:</b></label>
+                <input type="text" id="modelo" required>
+                
+                <label for="anoFabricacao"><b>Ano de Fabricação:</b></label>
+                <input type="number" id="anoFabricacao" required>
+                
+                <label for="preco"><b>Preço Proprietário (R$):</b></label>
+                <input type="number" id="preco" step="0.01" required>
+                
+                <button type="submit">Classificar/Calcular Preço</button>
+            </form>
+
+            <div class="resultado" id="resultado">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para classificar o veículo e calcular o preço de venda
+        function classificarVeiculo(modelo, anoFabricacao, preco) {
+            const anoAtual = new Date().getFullYear();  // Ano atual
+            let tipoVeiculo;
+            let precoVenda;
+
+            // Classificando o tipo do veículo
+            if (anoFabricacao === anoAtual) {
+                tipoVeiculo = "Novo";
+                precoVenda = preco * 1.08;  // Acréscimo de 8% para veículos novos
+            } else if (anoAtual - anoFabricacao <= 2) {
+                tipoVeiculo = "Seminovo";
+                precoVenda = preco * 1.10;  // Acréscimo de 10% para seminovos
+            } else {
+                tipoVeiculo = "Usado";
+                precoVenda = preco * 1.10;  // Acréscimo de 10% para usados
+            }
+
+            // Exibindo o resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <p><strong>${modelo} - ${tipoVeiculo}</strong></p>
+                <p><strong>R$ ${precoVenda.toFixed(2)}</strong></p>
+            `;
+        }
+
+        // Capturando o evento de submissão do formulário
+        document.getElementById('formVeiculo').addEventListener('submit', function(e) {
+            e.preventDefault();  // Impede o envio do formulário
+
+            // Pegando os valores dos campos
+            const modelo = document.getElementById('modelo').value;
+            const anoFabricacao = parseInt(document.getElementById('anoFabricacao').value);
+            const preco = parseFloat(document.getElementById('preco').value);
+
+            // Chamando a função para classificar e calcular o preço
+            classificarVeiculo(modelo, anoFabricacao, preco);
+        });
+    </script>
+</body>
+</html>
