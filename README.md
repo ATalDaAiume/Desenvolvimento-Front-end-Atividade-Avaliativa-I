@@ -1,4 +1,4 @@
-![atividade avaliativa](https://img.shields.io/badge/Web%20Lab-Front%20End-blue)
+![atividade avaliativa](https://img.shields.io/badge/atividade%20avaliativa-Front%20End-blue)
 
 # 🎨 Web Lab: Explorando o Front-End
 > Atividade Avaliativa – Desenvolvimento Front-End | 3º Semestre ADS
