@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atividade Avaliativa I - Desenvolvimento Front-end</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #5e2b97;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .card {
+      background-color: #ffffffcc;
+      border: 2px solid #d0b3f5;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(94, 43, 151, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(94, 43, 151, 0.4);
+    }
+    .card h2 {
+      color: #5e2b97;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: #4b3b63;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .button {
+      background-color: #b084f9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #a26de0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Atividade Avaliativa I - Desenvolvimento Front-end</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Exercício 01 | Classificação de Veículos</h2>
+      <p>Programa que lê modelo, ano e preço do veículo, classifica como novo, seminovo ou usado e calcula o preço de venda com acréscimo.</p>
+      <a href="Programa de Revenda.html" class="button" target="_blank">Ver Exercício</a>
+    </div>
+
+    <div class="card">
+      <h2>Exercício 02 | Notícias Recentes</h2>
+      <p>Programa que armazena e exibe as últimas notícias cadastradas, listando em ordem inversa conforme a escolha do usuário.</p>
+      <a href="Site de Noticias.html" class="button" target="_blank">Ver Exercício</a>
+    </div>
+
+    <div class="card">
+      <h2>Exercício 03 | Criptografia de Mensagens</h2>
+      <p>Programa para criptografar e decriptografar mensagens, separando letras de posições pares e ímpares.</p>
+      <a href="Programa Criptografia.html" class="button" target="_blank">Ver Exercício</a>
+    </div>
+
+    <div class="card">
+      <h2>Exercício 04 | Consumo de API (Usuários)</h2>
+      <p>Site que consome a API JSONPlaceholder para exibir dados de usuários em cards responsivos e estilizados. Inclui tratamento de erro.</p>
+      <a href="Lista de usuários.html" class="button" target="_blank">Ver Exercício</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
